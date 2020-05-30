@@ -1,0 +1,15 @@
+{
+  "name": "node-core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "1.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "ych <359274291@qq.com> (https://www.npmjs.com/~yuchunhua)",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^5.1.0"
+  }
+}
