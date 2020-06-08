@@ -20,7 +20,7 @@ const renderFile = (filePath,obj,cb) =>{
             return '`\r\n'+arguments[1] + '\r\nstr+=`\r\n'
         })
         let tail = '`}\r\n return str;'
-        let fn = new Function('obj',head + html + tail);
+        let fn = new Function('obj', head + html + tail);
         cb(err,fn(obj));
     });
 }
