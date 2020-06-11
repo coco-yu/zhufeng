@@ -26,6 +26,7 @@ EventEmitter.prototype.once = function (eventName, callback) {
     }
 
     once.l = callback;
+    console.log(once, 'once');
     this.on(eventName, once);
 }
 
