@@ -4,6 +4,11 @@ function EventEmitter() {
 
 EventEmitter.prototype.on = function (eventName, callback) {
     if (!this._events) this._events = {}; // 给实例添加事件对象
+    // 如果不是newListener，那就需要触发newListener的回调，emit的是newListener的第二个参数的方法
+    if(eventName !== 'newListener'){
+        this.emit('newListener', eventName);
+    }
+
     (this._events[eventName] || (this._events[eventName] = [])).push(callback);
 }
 
@@ -26,7 +31,6 @@ EventEmitter.prototype.once = function (eventName, callback) {
     }
 
     once.l = callback;
-    console.log(once, 'once');
     this.on(eventName, once);
 }
 
