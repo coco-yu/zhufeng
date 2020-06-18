@@ -11,5 +11,15 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "babel": "^6.23.0"
+  },
+  "dependencies": {
+    "git": "^0.1.5",
+    "mime": "^2.4.6",
+    "npm-git": "^0.1.29",
+    "redux": "^4.0.5",
+    "webpack": "^4.43.0"
+  }
 }
