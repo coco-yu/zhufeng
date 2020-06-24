@@ -1,4 +1,5 @@
-// 声明Node
+// 实现链表的发转
+
 class Node {
     constructor(element, next) {
         this.element = element;
@@ -13,13 +14,14 @@ class LinkedList {
     }
 
     add(index, element) {
-        if (arguments.length === 0) {
-            // 只传入元素、没有索引 参数的配置
+        if (arguments.length === 1) {
             element = index;
             index = this.size;
         }
 
-        if (index < 0 && index > this.size) throw Error('越界');
+        if (index < 0 || index > this.size) {
+            throw Error('越界');
+        }
 
         if (index === 0) {
             const head = this.head;
@@ -28,7 +30,7 @@ class LinkedList {
             const prevNode = this.getNode(index - 1);
             prevNode.next = new Node(element, prevNode.next);
         }
-        this.size++;
+
     }
 
     getNode(index) {
@@ -38,8 +40,5 @@ class LinkedList {
         }
         return current;
     }
-
-    reverse() {
-        
-    }
 }
+
