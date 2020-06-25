@@ -10,9 +10,14 @@ class Node {
 }
 
 class BST {
-  constructor() {
+  constructor(compare) {
     this.root = null;
     this.size = 0;
+    this.compare = compare || this.compare;
+  }
+  // 自定义比较方法
+  compare(e1, e2) {
+    return e1 - e2;
   }
 
   add(element) {
@@ -25,7 +30,7 @@ class BST {
       let compare = null;
       let parent = null;
       while (currentNode) {
-        compare = element - currentNode.element;
+        compare = this.compare(element, currentNode.element);
         parent = currentNode;
         if (compare > 0) {
           currentNode = currentNode.right;
