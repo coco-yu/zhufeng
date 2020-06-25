@@ -41,7 +41,7 @@ class LinkedList {
 
     reverseLinkedList() {
         const reserve = (head) => {
-            if(head === null || head.next === null) return head;
+            if (head === null || head.next === null) return head;
             const newHead = reverse(head.next);
             head.next.next = head;
             head.next = null;
@@ -49,5 +49,18 @@ class LinkedList {
         }
         this.head = reserve(this.head);
         return this.head;
+    }
+
+    reverseLinkedList2() {
+        const head = this.head;
+        if (head === null || head.next === null) return head;
+        let newHead = null;
+        while (head !== null) {
+            const temp = head.next;
+            head.next = newHead;
+            newHead = head;
+            head = temp;
+        }
+        return newHead;
     }
 }
