@@ -39,7 +39,15 @@ class LinkedList {
         return current;
     }
 
-    reverse() {
-        
+    reverseLinkedList() {
+        const reserve = (head) => {
+            if(head === null || head.next === null) return head;
+            const newHead = reverse(head.next);
+            head.next.next = head;
+            head.next = null;
+            return newHead;
+        }
+        this.head = reserve(this.head);
+        return this.head;
     }
 }
