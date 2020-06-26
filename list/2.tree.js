@@ -47,4 +47,48 @@ class BST {
       }
     }
   }
+  preorderTraversal() {
+    const traversal = (node) => {
+      if (node === null) return;
+      console.log(node.element);
+      traversal(node.left);
+      traversal(node.right);
+    }
+    traversal(this.root);
+  }
+
+  inorderTraversal(visitor) {
+    if(visitor === null) return;
+    const traversal = (node) => {
+      if (node === null) return;
+      traversal(node.left);
+      visitor.visit(node);
+      traversal(node.right);
+    }
+    traversal(this.root);
+  }
+
+  inorderTraversal(visitor) {
+    if(visitor === null) return;
+    const traversal = (node) => {
+      if (node === null) return;
+      traversal(node.left);
+      visitor.visit(node);
+      traversal(node.right);
+    }
+    traversal(this.root);
+  }
+
+  postorderTraversal(visitor) {
+    // 使用访问者模式在外面对节点进行操作
+    if(visitor === null) return;
+    const traversal = (node) => {
+      if (node === null) return;
+      traversal(node.left);
+      traversal(node.right);
+      console.log(node.element);
+      visitor.visit(node);
+    }
+    traversal(this.root);
+  }
 }
