@@ -58,7 +58,7 @@ class BST {
   }
 
   inorderTraversal(visitor) {
-    if(visitor === null) return;
+    if (visitor === null) return;
     const traversal = (node) => {
       if (node === null) return;
       traversal(node.left);
@@ -69,7 +69,7 @@ class BST {
   }
 
   inorderTraversal(visitor) {
-    if(visitor === null) return;
+    if (visitor === null) return;
     const traversal = (node) => {
       if (node === null) return;
       traversal(node.left);
@@ -81,7 +81,7 @@ class BST {
 
   postorderTraversal(visitor) {
     // 使用访问者模式在外面对节点进行操作
-    if(visitor === null) return;
+    if (visitor === null) return;
     const traversal = (node) => {
       if (node === null) return;
       traversal(node.left);
@@ -90,5 +90,22 @@ class BST {
       visitor.visit(node);
     }
     traversal(this.root);
+  }
+
+  levelOrder(visitor) {
+    if (this.root === null || visitor === null) return;
+    let stack = [this.root];
+    let index = 0;
+    let currentNode = null;
+    while (currentNode = stack[index++]) {
+      visitor.visit(currentNode);
+      if (currentNode.left) {
+        stack.push(currentNode.left);
+      }
+      if (currentNode.right) {
+        stack.push(currentNode.right);
+      }
+    }
+    stack = null;
   }
 }
