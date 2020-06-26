@@ -108,4 +108,25 @@ class BST {
     }
     stack = null;
   }
+
+  invertTree() {
+    if (this.root === null) return;
+    let stack = [this.root];
+    let index = 0;
+    let currentNode = null;
+    while (currentNode = stack[index++]) {
+      const tmp = currentNode.left;
+      currentNode.left = currentNode.right;
+      currentNode.right = tmp;
+      if (currentNode.left) {
+        stack.push(currentNode.left);
+      }
+
+      if (currentNode.right) {
+        stack.push(currentNode.right);
+      }
+    }
+    stack = null;
+    return this.root;
+  }
 }
