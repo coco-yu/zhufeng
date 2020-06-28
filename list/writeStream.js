@@ -1,6 +1,6 @@
 const fs = require('fs');
 const EventEmitter = require('events');
-const LinkedList = require('./1.linkedlist');
+const LinkedList = require('./linkedlist');
 
 class Queue {
     constructor() {
@@ -18,10 +18,11 @@ class Queue {
 
 class WriteStream extends EventEmitter {
     constructor(path, options) {
+        super();
         this.path = path;
         this.flags = options.flags || 'w';
         this.encoding = options.encoding || 'utf8';
-        this.mode = options.mode || '0o666';
+        this.mode = options.mode || 0o666;
         this.start = options.start || 0;
         this.highWaterMark = options.highWaterMark || 16 * 1024; // 16k 这么多个字节
 
@@ -76,15 +77,15 @@ class WriteStream extends EventEmitter {
 
     clearBuffer() {
         const data = this.cache.poll();
-        if(data) {
-            const {chunk, encoding, cb} = data;
+        if (data) {
+            const { chunk, encoding, cb } = data;
             this._write(chunk, encoding, () => {
                 cb;
                 this.clearBuffer();
             })
         } else {
             this.writing = false;
-            if(this.needDrain) {
+            if (this.needDrain) {
                 this.needDrain = false;
                 this.on('drain');
             }
