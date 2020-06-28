@@ -21,6 +21,7 @@ class WriteStream extends EventEmitter {
         super();
         this.path = path;
         this.flags = options.flags || 'w';
+        this.autoClose = options.autoClose || true;
         this.encoding = options.encoding || 'utf8';
         this.mode = options.mode || 0o666;
         this.start = options.start || 0;
@@ -43,12 +44,12 @@ class WriteStream extends EventEmitter {
         });
     }
 
-    write(chunk, encode = 'utf8', cd = () => { }) {
+    write(chunk, encoding = 'utf8', cb = () => { }) {
         chunk = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
 
         this.len += chunk.length;
         const flag = this.len < this.highWaterMark;
-        this.writing = !flag;
+        this.needDrain = !flag;
 
         if (this.writing) {
             this.cache.offer({ chunk, encoding, cb });
@@ -57,7 +58,7 @@ class WriteStream extends EventEmitter {
             this._write(chunk, encoding, () => {
                 cb();
                 this.clearBuffer();
-            })
+            });
         }
         return flag;
     }
@@ -87,7 +88,7 @@ class WriteStream extends EventEmitter {
             this.writing = false;
             if (this.needDrain) {
                 this.needDrain = false;
-                this.on('drain');
+                this.emit('drain');
             }
         }
     }
