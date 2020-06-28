@@ -8,7 +8,7 @@ const mkdirP = async (paths) => {
     const currentPath = arr.slice(0, i + 1).join('/');
 
     try {
-      await fs.access(currentPath);
+      await fs.access(currentPath); // 本身是一个promise
     } catch (e) {
       await fs.mkdir(currentPath);
     }
