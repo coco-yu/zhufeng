@@ -76,6 +76,23 @@ class ReadStream extends EventEmitter {
     this.flowing = true;
     this.read();
   }
+
+  // 参数为可写流 此方法为异步方法 不会引起内存淹没， 在导入过程中不能获取数据
+  pipe(dest) {
+    this.on('data', (data) => {
+      const flag = dest.write(data);
+      if(!flag) {
+        this.pause();
+      }
+    });
+    dest.on('drain', () => {
+      this.resume();
+    });
+
+    this.on('end', () => {
+      dest.on('end');
+    })
+  }
 };
 
 module.exports = ReadStream;
