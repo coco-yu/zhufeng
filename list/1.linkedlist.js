@@ -40,5 +40,15 @@ class LinkedList {
         }
         return current;
     }
+
+    remove(index) {
+        if (index === 0) {
+            const node = this.head;
+            if (!node) return null;
+            this.head = node.next;
+            this.size--;
+            return node.element;
+        }
+    }
 }
 
