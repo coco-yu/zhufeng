@@ -8,7 +8,9 @@ class Queue {
     }
 
     offer(element) {
+        console.log(element, 'element');
         this.linkedList.add(element);
+        console.log(this.linkedList, 'this.linkedList');
     }
 
     poll() {
@@ -51,6 +53,7 @@ class WriteStream extends EventEmitter {
         const flag = this.len < this.highWaterMark;
         this.needDrain = !flag;
 
+        console.log(this.writing, 'this.writing');
         if (this.writing) {
             this.cache.offer({ chunk, encoding, cb });
         } else {
