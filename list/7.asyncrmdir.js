@@ -30,7 +30,9 @@ const rmdir = (dir, cb) => {
     })
 }
 
-// rmdir('')
+rmdir('a', () => {
+    console.log('异步并行删除目录');
+})
 
 
 
