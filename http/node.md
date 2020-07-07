@@ -35,3 +35,30 @@
 ## curl (本地必须安装git)
     eg. curl -v -X --data =1 POST www.baidu.com
 
+## 常用请求方法
+    1、get 通过url参数传递数据 明文传输不安全
+    2、post 通过请求体传递数据 明文传输不安全
+
+## RESTFUL风格
+    根据请求方式的不同判断操作类型
+    - get 请求获取数据
+    - post 添加数据
+    - delete 删除数据
+    - put 修改数据
+    - options 预先检测（预检请求）跨域 如果发送的是复杂请求，默认会先发送options请求。
+
+    简单请求
+        跨域的时候，get post options默认是简单请求。增加自定义的header会变成复杂请求。
+    复杂请求
+        delete put
+
+    跨域：
+        协议、域名、端口号任意一个不相同都是跨域
+    解决跨域：
+        1、cors 服务端解决跨域（添加跨域头）
+        2、jsonp
+        3、nginx（反向代理）
+        4、websocket(H5提供的，不限制域)
+        5、iframe
+        6、window.name
+
