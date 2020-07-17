@@ -83,7 +83,7 @@
     503 服务端报错
     504 gateway
 
-## 请求中数据分为三部分（请求的报文）
+## 请求中数据分为三 部分（请求的报文）
     - 请求行
         请求方法、请求路径（pathname后面部分，hash前面到内容）、http version
         可以通过问号传递参数
@@ -99,3 +99,11 @@
         自定义响应信息
     - 响应体
         返回给浏览器的内容
+
+## nodemon 文件变化后自动重新运行或者使用pm2
+    可以监视自动重启、自动打包
+    安装nodemon 
+        npm install nodemon -g (mac报错)
+    使用nodemon
+        nodemon 文件名
+
